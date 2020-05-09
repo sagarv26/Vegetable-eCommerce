@@ -36,7 +36,7 @@ import sweinc.com.buyvegitables.model.ImageViewerModel;
 
 
 public class HomeActivity extends AppCompatActivity
-        implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener{
+        implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
 
     ViewPager viewPager;
     ImageViewerAdapter adapter;
@@ -61,10 +61,10 @@ public class HomeActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 res = cart_database.read();
-                if(!res.moveToNext()){
+                if (!res.moveToNext()) {
                     Config.BuildAlert.buildAlert(HomeActivity.this, "Cart is Empty....Add Products to it now", "Empty Cart");
-                } else{
-                    Config.BuildIntent.buildIntent(getApplicationContext(),CartPage.class, "Cart");
+                } else {
+                    Config.BuildIntent.buildIntent(getApplicationContext(), CartPage.class, "Cart");
                 }
 
             }
@@ -145,21 +145,27 @@ public class HomeActivity extends AppCompatActivity
             startActivity(Intent.createChooser(intent, "Send Feedback:"));
         } else if (id == R.id.nav_cart) {
             res = cart_database.read();
-            if(!res.moveToNext()){
+            if (!res.moveToNext()) {
                 Config.BuildAlert.buildAlert(HomeActivity.this, "Cart is Empty....Add Products to it now", "Empty Cart");
-            } else{
-                Config.BuildIntent.buildIntent(getApplicationContext(),CartPage.class, "Cart");
+            } else {
+                Config.BuildIntent.buildIntent(getApplicationContext(), CartPage.class, "Cart");
             }
         } else if (id == R.id.nav_fruits) {
-            Config.BuildIntent.buildIntent(getApplicationContext(),ProductList.class, "Fruits");
+            Config.BuildIntent.buildIntent(getApplicationContext(), ProductList.class, "Fruits");
         } else if (id == R.id.nav_vegetable) {
-            Config.BuildIntent.buildIntent(getApplicationContext(),ProductList.class, "Vegetables");
+            Config.BuildIntent.buildIntent(getApplicationContext(), ProductList.class, "Vegetables");
         } else if (id == R.id.nav_addProfile) {
-            Config.BuildIntent.buildIntent(getApplicationContext(),AddProfile.class, "Add Profile");
+            Config.BuildIntent.buildIntent(getApplicationContext(), AddProfile.class, "Add Profile");
         } else if (id == R.id.nav_fav) {
-            Config.BuildIntent.buildIntent(getApplicationContext(),FavoritePage.class, "Favorite");
+            Config.BuildIntent.buildIntent(getApplicationContext(), FavoritePage.class, "Favorite");
         } else if (id == R.id.nav_order) {
-            Config.BuildIntent.buildIntent(getApplicationContext(),OrderDetails.class, "Order Details");
+            Config.BuildIntent.buildIntent(getApplicationContext(), OrderDetails.class, "Order Details");
+        } else if (id == R.id.nav_developer) {
+            Intent intent = new Intent(getApplicationContext(), Show_Web.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("keyTitle", "Developer");
+            intent.putExtra("keyFile", "file:///android_asset/AboutDev.html");
+            startActivity(intent);
         }
 
 
@@ -205,13 +211,13 @@ public class HomeActivity extends AppCompatActivity
 
         switch (v.getId()) {
             case R.id.profileButton:
-                Config.BuildIntent.buildIntent(getApplicationContext(),AddProfile.class, "Add Profile");
-            break;
+                Config.BuildIntent.buildIntent(getApplicationContext(), AddProfile.class, "Add Profile");
+                break;
             case R.id.viewAllButton:
-                Config.BuildIntent.buildIntent(getApplicationContext(),ProductList.class, "All");
+                Config.BuildIntent.buildIntent(getApplicationContext(), ProductList.class, "All");
                 break;
             case R.id.dietButton:
-                Config.BuildIntent.buildIntent(getApplicationContext(),ProductList.class, "All");
+                Config.BuildIntent.buildIntent(getApplicationContext(), ProductList.class, "All");
                 break;
             case R.id.returnButton:
                 Intent intent = new Intent(getApplicationContext(), Show_Web.class);
@@ -222,7 +228,7 @@ public class HomeActivity extends AppCompatActivity
                 break;
 
         }
-        }
+    }
 }
 
 
