@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "679910487748",
+    "firebase_url": "https://buyvegetable-e387f.firebaseio.com",
+    "project_id": "buyvegetable-e387f",
+    "storage_bucket": "buyvegetable-e387f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:679910487748:android:650bd4f98515794b067b91",
+        "android_client_info": {
+          "package_name": "sweinc.com.buyvegitables"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "679910487748-o9sdn29q7vspeivjd1uf0jmj61h6eo48.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "sweinc.com.buyvegitables",
+            "certificate_hash": "2d65abe78cb4ff654a9683cf5d3ae29bd8622853"
+          }
+        },
+        {
+          "client_id": "679910487748-8fmjsbc412kkdsdj2ls23d9n2o9aibsm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJ_zuMYw-fhvucSYPW2xcx3DFeyuAVYFg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "679910487748-8fmjsbc412kkdsdj2ls23d9n2o9aibsm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

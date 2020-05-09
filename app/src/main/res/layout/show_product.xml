@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@android:color/transparent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:shadowColor="#000"
+            android:shadowDx="0"
+            android:shadowDy="30"
+            android:shadowRadius="50">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/image_holder"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_margin="5dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:dividerHeight="0.0px"
+                card_view:cardElevation="10dp"
+                card_view:cardPreventCornerOverlap="false">
+
+                <ImageView
+                    android:id="@+id/detail_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/app_name"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/header" />
+
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/image_holder"
+                android:layout_margin="5dp"
+                android:text="@string/app_name"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sub_title"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cost_holder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title"
+                android:layout_margin="5dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:dividerHeight="0.0px"
+                card_view:cardElevation="10dp"
+                card_view:cardPreventCornerOverlap="false">
+
+                <TextView
+                    android:id="@+id/priceTag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/cost_holder"
+                    android:layout_margin="8dp"
+                    android:text="@string/app_name"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/info_text"
+                    android:textStyle="bold" />
+
+            </android.support.v7.widget.CardView>
+
+            <LinearLayout
+                android:id="@+id/quantity_holder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/cost_holder">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/quantity_holder1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    card_view:cardElevation="2dp"
+                    card_view:cardUseCompatPadding="true">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/quantityTag"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:text="Quantity in: "
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/sub_title"
+                            android:textStyle="bold" />
+
+                        <Spinner
+                            android:id="@+id/spinnerQuantity"
+                            android:layout_width="125dp"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_below="@+id/quantityTag"
+                            app:layout_constraintHorizontal_bias="0.502"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.498" />
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/quantity_adder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cost_holder"
+                    android:layout_margin="5dp"
+                    card_view:cardElevation="2dp"
+                    card_view:cardUseCompatPadding="true">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/quantityTag1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:text="Quantity in kgs/grams/numbers"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp" />
+
+
+                        <LinearLayout
+                            android:layout_margin="5dp"
+                            android:layout_below="@+id/quantityTag1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <Button
+                                android:id="@+id/minusQuantity"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:text="-"
+                                android:textSize="18dp"
+                                android:layout_margin="5dp"
+                                android:textColor="@color/colorWhite"
+                                android:background="@color/colorBlue"/>
+
+                            <TextView
+                                android:id="@+id/input_quantity"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="5dp"
+                                android:text="Quantity"
+                                android:textColor="@android:color/black"
+                                android:textSize="@dimen/sub_title" />
+
+                            <Button
+                                android:id="@+id/addQuantity"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:text="+"
+                                android:textSize="18dp"
+                                android:layout_margin="5dp"
+                                android:textColor="@color/colorWhite"
+                                android:background="@color/colorBlue"/>
+                        </LinearLayout>
+
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
+
+            <!--<android.support.v7.widget.CardView-->
+                <!--android:id="@+id/material_holder"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/quantity_holder"-->
+                <!--android:layout_margin="8dp">-->
+
+                <!--<RelativeLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent">-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/materialTag"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_margin="5dp"-->
+                        <!--android:text="About:"-->
+                        <!--android:textColor="@android:color/black"-->
+                        <!--android:textSize="@dimen/sub_title"-->
+                        <!--android:textStyle="bold" />-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/materialDescription"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_below="@id/materialTag"-->
+                        <!--android:layout_marginStart="20dp"-->
+                        <!--android:layout_marginLeft="20dp"-->
+                        <!--android:layout_marginEnd="10dp"-->
+                        <!--android:layout_marginRight="10dp"-->
+                        <!--android:layout_marginBottom="5dp"-->
+                        <!--android:lines="50"-->
+                        <!--android:maxLines="20"-->
+                        <!--android:minLines="6"-->
+                        <!--android:scrollbars="vertical"-->
+                        <!--android:text="@string/app_name"-->
+                        <!--android:textColor="@android:color/black"-->
+                        <!--android:textSize="@dimen/info_sub"-->
+                        <!--android:textStyle="normal" />-->
+
+                <!--</RelativeLayout>-->
+
+            <!--</android.support.v7.widget.CardView>-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/quantity_holder"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="10dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/add_cart"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:background="@android:color/holo_orange_dark"
+                    android:text="@string/add_cart"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/add_fav"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:background="@android:color/holo_green_dark"
+                    android:text="@string/wishlist"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</RelativeLayout>

@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_margin="5dp"
+            android:background="@color/colorWhite"
+            android:id="@+id/addressLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/addressLayoutTop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/addressImage"
+                    android:scaleType="fitXY"
+                    android:layout_margin="15dp"
+                    android:layout_width="150dp"
+                    android:layout_height="100dp" />
+
+                <TextView
+                    android:id="@+id/address"
+                    android:layout_margin="15dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/test"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/black"/>
+
+
+            </LinearLayout>
+
+
+            <Button
+                android:layout_margin="15dp"
+                android:padding="10dp"
+                android:id="@+id/updateAddress"
+                android:layout_below="@+id/addressLayoutTop"
+                android:layout_marginTop="5dp"
+                android:text="Update Address"
+                android:textColor="@android:color/white"
+                android:background="@android:color/darker_gray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+
+
+        <android.support.v7.widget.CardView
+            android:layout_below="@+id/addressLayout"
+            android:id="@+id/billLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+               <TextView
+                   android:layout_margin="5dp"
+                   android:id="@+id/dottedLine1"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/billTag"
+                    android:layout_below="@+id/dottedLine1"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="Receipt"
+                    android:padding="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorYellow"/>
+
+                <TextView
+                    android:layout_margin="5dp"
+                    android:id="@+id/dottedLine2"
+                    android:layout_below="@+id/billTag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RelativeLayout
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:id="@+id/itemAndCostTag"
+                    android:layout_below="@+id/dottedLine2"
+                    android:layout_width="wrap_content"
+                    android:background="@color/color4"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/itemTag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total Amount"
+                        android:textSize="18dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@android:color/white"/>
+
+                    <TextView
+                        android:layout_marginRight="40dp"
+                        android:layout_marginLeft="40dp"
+                        android:id="@+id/priceTag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/test"
+                        android:textSize="18dp"
+                        android:textColor="@android:color/white"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/priceLayout"
+                    android:layout_below="@+id/itemAndCostTag"
+                    android:layout_width="wrap_content"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_margin="10dp"
+                        android:id="@+id/item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total Amount"
+                        android:textSize="@dimen/sub_title"
+                        android:textColor="@android:color/black"/>
+
+                    <TextView
+                        android:layout_marginRight="40dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/itemCost"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/test"
+                        android:textSize="@dimen/sub_title"
+                        android:textColor="@android:color/black"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_margin="5dp"
+                    android:id="@+id/dottedLine3"
+                    android:layout_below="@+id/priceLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RelativeLayout
+                    android:id="@+id/totalAmountLayout"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_below="@+id/dottedLine3"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_margin="10dp"
+                        android:id="@+id/priceTotalTag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total Amount: "
+                        android:textSize="18dp"
+                        android:textColor="@android:color/black"/>
+
+                    <TextView
+                        android:layout_marginRight="40dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/priceTotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/test"
+                        android:textSize="18dp"
+                        android:textColor="@android:color/black"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_margin="5dp"
+                    android:id="@+id/dottedLine4"
+                    android:layout_below="@+id/totalAmountLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <Button
+            android:padding="10dp"
+            android:id="@+id/placeOrder"
+            android:layout_below="@+id/billLayout"
+            android:layout_margin="15dp"
+            android:layout_alignParentEnd="true"
+            android:text="Continue"
+            android:textColor="@android:color/white"
+            android:background="@android:color/holo_orange_dark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </RelativeLayout>
+
+</android.support.v4.widget.NestedScrollView>

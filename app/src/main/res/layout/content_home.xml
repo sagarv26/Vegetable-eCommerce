@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".HomeActivity"
+    tools:showIn="@layout/app_bar_home">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_marginTop="5dp"
+            android:id="@+id/about_us_layout"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+            <ImageView
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/header" />
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/app_slogan3"
+                android:textStyle="normal"
+                android:textSize="@dimen/info_text"
+                android:textColor="@android:color/white"
+                android:layout_marginStart="20dp" />
+
+            <TextView
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/app_slogan4"
+                android:textSize="@dimen/title"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginStart="20dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/about_us_layout"
+            android:id="@+id/diet_layout"
+            android:layout_width="match_parent"
+            android:layout_height="225dp">
+
+            <ImageView
+                android:id="@+id/dietImage"
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/header" />
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/app_slogan6"
+                android:textStyle="normal"
+                android:textSize="@dimen/info_text"
+                android:textColor="@android:color/white"
+                android:layout_marginStart="20dp" />
+
+            <TextView
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/app_slogan5"
+                android:textSize="@dimen/title"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginStart="20dp" />
+
+            <Button
+                android:id="@+id/dietButton"
+                android:text="Diet Items"
+                android:gravity="center"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_alignParentBottom="true"
+                android:background="@android:color/white"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/diet_layout"
+            android:id="@+id/viewAllLayout"
+            android:layout_width="match_parent"
+            android:layout_height="225dp">
+
+            <ImageView
+                android:id="@+id/viewAllImage"
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/header"
+                android:alpha="0.90"/>
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/app_slogan7"
+                android:textSize="@dimen/title"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginStart="20dp" />
+
+            <Button
+                android:id="@+id/viewAllButton"
+                android:text="View All"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_alignParentBottom="true"
+                android:background="@android:color/holo_green_dark"
+                android:padding="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/viewAllLayout"
+            android:id="@+id/profileLayout"
+            android:layout_width="match_parent"
+            android:layout_height="225dp">
+
+
+            <ImageView
+                android:id="@+id/profileImage"
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <ImageView
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:scaleType="fitXY"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_person"
+                android:layout_width="100dp"
+                android:layout_height="100dp" />
+
+            <Button
+                android:id="@+id/profileButton"
+                android:text="Profile"
+                android:gravity="center"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorYellow"
+                android:padding="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/profileLayout"
+            android:id="@+id/returnLayout"
+            android:layout_width="match_parent"
+            android:layout_height="225dp">
+
+            <ImageView
+                android:id="@+id/returnImage"
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.90"/>
+
+            <Button
+                android:id="@+id/returnButton"
+                android:text="Return Policy"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:background="@android:color/holo_blue_dark"
+                android:padding="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</android.support.v4.widget.NestedScrollView>

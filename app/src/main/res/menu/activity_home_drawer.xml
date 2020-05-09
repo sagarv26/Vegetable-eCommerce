@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_camera"
+            android:icon="@drawable/ic_home"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_vegetable"
+            android:icon="@drawable/ic_vegetableicon"
+            android:title="Vegetable" />
+        <item
+            android:id="@+id/nav_fruits"
+            android:icon="@drawable/ic_fruiticon"
+            android:title="Fruits" />
+        <item
+            android:id="@+id/nav_addProfile"
+            android:icon="@drawable/ic_person"
+            android:title="Add Profile" />
+        <item
+            android:id="@+id/nav_fav"
+            android:icon="@drawable/ic_favorite"
+            android:title="Wishlist" />
+        <item
+            android:id="@+id/nav_cart"
+            android:icon="@drawable/ic_shopping_cart"
+            android:title="Cart" />
+        <item
+            android:id="@+id/nav_order"
+            android:icon="@drawable/ic_shopping_cart"
+            android:title="Order Details" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_feedback"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Feedback" />
+            <item
+                android:id="@+id/nav_developer"
+                android:icon="@drawable/ic_account"
+                android:title="Developer" />
+        </menu>
+    </item>
+
+</menu>
