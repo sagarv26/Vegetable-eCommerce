@@ -213,7 +213,6 @@ public class Show_Details extends AppCompatActivity {
 
         Glide.with(this).load(url).into(image);
 
-//        new DownloadImageFromInternet(image).execute(url);
         priceTag.setText(rupee + price + " /KG");
         title.setText(recipe_title);
         ActionBar toolbar = getSupportActionBar();

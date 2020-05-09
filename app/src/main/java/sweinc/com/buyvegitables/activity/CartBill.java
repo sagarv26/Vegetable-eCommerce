@@ -12,8 +12,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.content.Intent;
+
 import com.bumptech.glide.Glide;
 
+import sweinc.com.buyvegitables.Config;
 import sweinc.com.buyvegitables.R;
 import sweinc.com.buyvegitables.database.Cart_Database;
 import sweinc.com.buyvegitables.database.Profile_Database;
@@ -48,7 +50,7 @@ public class CartBill extends AppCompatActivity {
         TextView dottedLine3 = findViewById(R.id.dottedLine3);
         TextView dottedLine4 = findViewById(R.id.dottedLine4);
 
-        String dottedLine = "  --------------------------------------------------------------------- ";
+        String dottedLine = "  ---------------------------------------------------------------------  ";
         dottedLine1.setText(dottedLine);
         dottedLine2.setText(dottedLine);
         dottedLine3.setText(dottedLine);
@@ -73,7 +75,6 @@ public class CartBill extends AppCompatActivity {
         }
 
 
-
         itemList = itemList.append("\nTotal Items (" + countOrderedList + ")");
         itemDetails.append("\n").append("\nTotal Items (" + countOrderedList + ")").append("\nTotal Amount: ").append(rupee + totalCost);
 
@@ -91,51 +92,32 @@ public class CartBill extends AppCompatActivity {
 
         if (addr.equals("")) {
             addr = "Please Update Address...";
-        } else if(mob.equals("")) {
+        } else if (mob.equals("")) {
             addr = "Please Update Mobile Number...";
         }
 
         final String addrDetails = "Delivery Details:\n\n" + name + "\n" + mob + "\n" + upi + "\n" + addr + "\n";
         address.setText(addrDetails);
 
-
         updateAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), AddProfile.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                Config.BuildIntent.buildIntent(getApplicationContext(), AddProfile.class, "Add Profile");
             }
         });
 
         placeOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if (addr.equals("") || addr.equals("Please Update Address...")) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(CartBill.this);
-                    builder.setMessage("Please Add Delivery Details..")
-                            .setTitle("Address")
-                            .setCancelable(false)
-                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                }
-                            });
-                    AlertDialog alert = builder.create();
-                    alert.show();
-                    alert.getButton(-2).setBackgroundColor(-1);
-                    alert.getButton(-2).setLeft(10);
-                    alert.getButton(-1).setTextColor(ViewCompat.MEASURED_STATE_MASK);
-                    alert.getButton(-2).setTextColor(ViewCompat.MEASURED_STATE_MASK);
-                    alert.getButton(-1).setBackgroundColor(-1);
+                    Config.BuildAlert.buildAlert(CartBill.this, "Please Add Delivery Details..", "Address");
                 } else {
                     Intent intent = new Intent(getApplicationContext(), PlaceOrder.class);
                     intent.putExtra("keyAmount", rupee + totalCost);
                     intent.putExtra("keyAddress", addrDetails);
-                    intent.putExtra("keyItemDetails", itemDetails+"");
+                    intent.putExtra("keyItemDetails", itemDetails + "");
                     startActivity(intent);
                 }
-
             }
         });
 

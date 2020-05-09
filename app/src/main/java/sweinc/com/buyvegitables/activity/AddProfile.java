@@ -114,9 +114,7 @@ public class AddProfile extends AppCompatActivity implements View.OnClickListene
 
         queue.add(stringRequest);
 
-
     }
-
 
     @Override
     public void onClick(View v) {
@@ -174,19 +172,19 @@ public class AddProfile extends AppCompatActivity implements View.OnClickListene
                         alert.show();
                     } else {
                         if (Profile_Database.validate(name) != 0) {
-                            if (Long.valueOf(AddProfile.this.database.update(name, mail, mob, address, upi, map)).longValue() == -1) {
-                                Log.e("Call:","Not Updated");
-                                Toast.makeText(AddProfile.this.getApplicationContext(), Show_Details.recipe_title + " : Not Updated", Toast.LENGTH_SHORT).show();
+                            if (Long.valueOf(database.update(name, mail, mob, address, upi, map)).longValue() == -1) {
+                                Log.e("Call:", "Not Updated");
+                                Toast.makeText(getApplicationContext(), Show_Details.recipe_title + " : Not Updated", Toast.LENGTH_SHORT).show();
                             } else {
-                                Log.e("Call:","Updated");
-                                Toast.makeText(AddProfile.this.getApplicationContext(), Show_Details.recipe_title + " Value Updated", Toast.LENGTH_SHORT).show();
+                                Log.e("Call:", "Updated");
+                                Toast.makeText(getApplicationContext(), Show_Details.recipe_title + " Value Updated", Toast.LENGTH_SHORT).show();
                             }
-                        } else if (Long.valueOf(AddProfile.this.database.create(name, mail, mob, address, upi, map)).longValue() == -1) {
-                            Log.e("Call:","Added");
-                            Toast.makeText(AddProfile.this.getApplicationContext(), "Profile Not Added", Toast.LENGTH_SHORT).show();
+                        } else if (Long.valueOf(database.create(name, mail, mob, address, upi, map)).longValue() == -1) {
+                            Log.e("Call:", "Added");
+                            Toast.makeText(getApplicationContext(), "Profile Not Added", Toast.LENGTH_SHORT).show();
                         } else {
-                            Log.e("Call:","Not Added");
-                            Toast.makeText(AddProfile.this.getApplicationContext(), "Profile Added", Toast.LENGTH_SHORT).show();
+                            Log.e("Call:", "Not Added");
+                            Toast.makeText(getApplicationContext(), "Profile Added", Toast.LENGTH_SHORT).show();
                         }
                         addItemToSheet();
                     }

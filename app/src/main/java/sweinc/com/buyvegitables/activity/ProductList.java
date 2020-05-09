@@ -38,7 +38,7 @@ import sweinc.com.buyvegitables.model.RecyclerItem;
 public class ProductList extends AppCompatActivity {
 
     ProgressDialog loading;
-    public RecyclerView recyclerView;
+    RecyclerView recyclerView;
     static List<RecyclerItem> listItem;
     ActionBar toolbar;
     ImageView titleImage;
@@ -46,7 +46,6 @@ public class ProductList extends AppCompatActivity {
     RecyclerAdapter adapter;
 
     static String titleName = null;
-    static String ex = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,8 +62,8 @@ public class ProductList extends AppCompatActivity {
         titleName = String.valueOf(intent.getStringExtra("keyTitle"));
 
         if(titleName.equals("All")){
-            title.setText("Vegetables and Fruits");
-            toolbar.setTitle("Vegetables and Fruits");
+            title.setText(getString(R.string.vegetablesTag));
+            toolbar.setTitle(getString(R.string.vegetablesTag));
         } else {
             title.setText(titleName);
             toolbar.setTitle(titleName);
@@ -88,9 +87,9 @@ public class ProductList extends AppCompatActivity {
 
     private void getItems() {
 
-        loading = ProgressDialog.show(this,  "please wait", Config.GetRandom.getSlogan(), false, true);
+        loading = ProgressDialog.show(this,  "Please wait", Config.GetRandom.getSlogan(), false, true);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://script.google.com/macros/s/AKfycbyVD-7wLhZTItcZyINYW3FP3keMkAwyv4hCgEQBBRo3t82whnim/exec?action=getItems",
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Config.productURL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

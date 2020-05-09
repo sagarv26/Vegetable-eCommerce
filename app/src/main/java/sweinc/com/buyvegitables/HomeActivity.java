@@ -1,15 +1,11 @@
 package sweinc.com.buyvegitables;
 
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.app.AlertDialog;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.view.View;
@@ -19,7 +15,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.view.ViewPager;
 
@@ -47,10 +42,8 @@ public class HomeActivity extends AppCompatActivity
     ImageViewerAdapter adapter;
     List<ImageViewerModel> models;
 
-    ProgressDialog loading;
     Cursor res;
     Cart_Database cart_database;
-    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,25 +62,9 @@ public class HomeActivity extends AppCompatActivity
             public void onClick(View view) {
                 res = cart_database.read();
                 if(!res.moveToNext()){
-                    AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
-                    builder.setMessage("Your Cart is Empty....Add Products to it now")
-                            .setTitle("Empty")
-                            .setCancelable(false)
-                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                }
-                            });
-                    AlertDialog alert = builder.create();
-                    alert.show();
-                    alert.getButton(-2).setBackgroundColor(-1);
-                    alert.getButton(-2).setLeft(10);
-                    alert.getButton(-1).setTextColor(ViewCompat.MEASURED_STATE_MASK);
-                    alert.getButton(-2).setTextColor(ViewCompat.MEASURED_STATE_MASK);
-                    alert.getButton(-1).setBackgroundColor(-1);
+                    Config.BuildAlert.buildAlert(HomeActivity.this, "Cart is Empty....Add Products to it now", "Empty Cart");
                 } else{
-                    Intent intent = new Intent(getApplicationContext(), CartPage.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
+                    Config.BuildIntent.buildIntent(getApplicationContext(),CartPage.class, "Cart");
                 }
 
             }
@@ -119,7 +96,9 @@ public class HomeActivity extends AppCompatActivity
         ImageView viewAllImage = findViewById(R.id.viewAllImage);
         ImageView returnImage = findViewById(R.id.returnImage);
         ImageView profileImage = findViewById(R.id.profileImage);
+        ImageView headerImage = findViewById(R.id.headerImage);
 
+        Glide.with(this).load(Config.headerImage).into(headerImage);
         Glide.with(this).load("https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/AN_images/vegetarian-diet-plan-1296x728-feature.jpg").into(imageView);
         Glide.with(this).load("https://cdn.pixabay.com/photo/2017/04/05/10/05/salad-2204505_960_720.jpg").into(viewAllImage);
         Glide.with(this).load("https://cdn.shopify.com/s/files/1/0185/3988/files/Goodordering-returns.jpg").into(returnImage);
@@ -158,7 +137,7 @@ public class HomeActivity extends AppCompatActivity
         if (id == R.id.nav_feedback) {
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("text/email");
-            intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"srideviff@gmail.com"});
+            intent.putExtra(Intent.EXTRA_EMAIL, new String[]{getString(R.string.appEmail)});
             intent.putExtra(Intent.EXTRA_SUBJECT, "Feedback");
             intent.setPackage("com.google.android.gm");
             intent.setFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
@@ -167,46 +146,20 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.nav_cart) {
             res = cart_database.read();
             if(!res.moveToNext()){
-                AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
-                builder.setMessage("Your Cart is Empty....Add Products to it now")
-                        .setTitle("Empty")
-                        .setCancelable(false)
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                            }
-                        });
-                AlertDialog alert = builder.create();
-                alert.show();
-                alert.getButton(-2).setBackgroundColor(-1);
-                alert.getButton(-2).setLeft(10);
-                alert.getButton(-1).setTextColor(ViewCompat.MEASURED_STATE_MASK);
-                alert.getButton(-2).setTextColor(ViewCompat.MEASURED_STATE_MASK);
-                alert.getButton(-1).setBackgroundColor(-1);
+                Config.BuildAlert.buildAlert(HomeActivity.this, "Cart is Empty....Add Products to it now", "Empty Cart");
             } else{
-                Intent intent = new Intent(getApplicationContext(), CartPage.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                Config.BuildIntent.buildIntent(getApplicationContext(),CartPage.class, "Cart");
             }
         } else if (id == R.id.nav_fruits) {
-            Intent intent = new Intent(getApplicationContext(), ProductList.class);
-            intent.putExtra("keyTitle", "Fruits");
-            startActivity(intent);
+            Config.BuildIntent.buildIntent(getApplicationContext(),ProductList.class, "Fruits");
         } else if (id == R.id.nav_vegetable) {
-            Intent intent = new Intent(getApplicationContext(), ProductList.class);
-            intent.putExtra("keyTitle", "Vegetables");
-            startActivity(intent);
+            Config.BuildIntent.buildIntent(getApplicationContext(),ProductList.class, "Vegetables");
         } else if (id == R.id.nav_addProfile) {
-            Intent intent = new Intent(getApplicationContext(), AddProfile.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
+            Config.BuildIntent.buildIntent(getApplicationContext(),AddProfile.class, "Add Profile");
         } else if (id == R.id.nav_fav) {
-            Intent intent = new Intent(getApplicationContext(), FavoritePage.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
+            Config.BuildIntent.buildIntent(getApplicationContext(),FavoritePage.class, "Favorite");
         } else if (id == R.id.nav_order) {
-            Intent intent = new Intent(getApplicationContext(), OrderDetails.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
+            Config.BuildIntent.buildIntent(getApplicationContext(),OrderDetails.class, "Order Details");
         }
 
 
@@ -252,19 +205,13 @@ public class HomeActivity extends AppCompatActivity
 
         switch (v.getId()) {
             case R.id.profileButton:
-                intent = new Intent(getApplicationContext(), AddProfile.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                Config.BuildIntent.buildIntent(getApplicationContext(),AddProfile.class, "Add Profile");
             break;
             case R.id.viewAllButton:
-                intent = new Intent(getApplicationContext(), ProductList.class);
-                intent.putExtra("keyTitle", "All");
-                startActivity(intent);
+                Config.BuildIntent.buildIntent(getApplicationContext(),ProductList.class, "All");
                 break;
             case R.id.dietButton:
-                intent = new Intent(getApplicationContext(), ProductList.class);
-                intent.putExtra("keyTitle", "All");
-                startActivity(intent);
+                Config.BuildIntent.buildIntent(getApplicationContext(),ProductList.class, "All");
                 break;
             case R.id.returnButton:
                 Intent intent = new Intent(getApplicationContext(), Show_Web.class);

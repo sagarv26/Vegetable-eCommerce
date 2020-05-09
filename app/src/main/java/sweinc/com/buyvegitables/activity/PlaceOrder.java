@@ -1,15 +1,18 @@
 package sweinc.com.buyvegitables.activity;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -31,6 +34,7 @@ import java.util.Map;
 
 import sweinc.com.buyvegitables.Config;
 import sweinc.com.buyvegitables.HomeActivity;
+import sweinc.com.buyvegitables.Manifest;
 import sweinc.com.buyvegitables.R;
 import sweinc.com.buyvegitables.database.Cart_Database;
 import sweinc.com.buyvegitables.database.Order_Database;
@@ -40,10 +44,11 @@ public class PlaceOrder extends AppCompatActivity implements View.OnClickListene
     final int UPI_PAYMENT = 0;
     String totalAmount = "", addrDetails = "", itemDetails = "";
     boolean connected = false;
-    AlertDialog.Builder builder;
+
     Button codPayment;
     Cart_Database db;
     Order_Database orderDB;
+    private final static int SEND_SMS_PERMISSION_REQ = 1;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,30 +69,41 @@ public class PlaceOrder extends AppCompatActivity implements View.OnClickListene
         addrDetails = String.valueOf(intent.getStringExtra("keyAddress"));
         itemDetails = String.valueOf(intent.getStringExtra("keyItemDetails"));
 
+        if (checkPermission(android.Manifest.permission.SEND_SMS)) {
+            upiPayment.setEnabled(true);
+            codPayment.setEnabled(true);
+        } else {
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.SEND_SMS}, SEND_SMS_PERMISSION_REQ);
+        }
+
         upiPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Getting the values from the EditTexts
-//                if (TextUtils.isEmpty(name.getText().toString().trim())){
-//                    Toast.makeText(CartBill.this, "", Toast.LENGTH_SHORT).show();.makeText(MainActivity.this," Name is invalid", Toast.LENGTH_SHORT).show();
-//                }else if (TextUtils.isEmpty(upivirtualid.getText().toString().trim())){
-//                    Toast.makeText(CartBill.this," UPI ID is invalid", Toast.LENGTH_SHORT).show();
-//                }else if (TextUtils.isEmpty(note.getText().toString().trim())){
-//                    Toast.makeText(CartBill.this," Note is invalid", Toast.LENGTH_SHORT).show();
-//                }else if (TextUtils.isEmpty(amount.getText().toString().trim())){
-//                    Toast.makeText(CartBill.this," Amount is invalid", Toast.LENGTH_SHORT).show();
-//                }else{
-//                    payUsingUpi(name.getText().toString(), upivirtualid.getText().toString(),
-//                            note.getText().toString(), amount.getText().toString());
-//                }
-                payUsingUpi("Sagar Hande", "8722548007@upi",
-                        R.string.app_name+" Payment", "5");
+
+                payUsingUpi(Config.UPIName, Config.AppUPI,
+                        getString(R.string.app_name) + " Payment", totalAmount);
             }
         });
 
         codPayment.setOnClickListener(this);
-        builder = new AlertDialog.Builder(this);
 
+    }
+
+    private boolean checkPermission(String sendSms) {
+        int checkpermission = ContextCompat.checkSelfPermission(this, sendSms);
+        return checkpermission == PackageManager.PERMISSION_GRANTED;
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode)
+        {
+            case SEND_SMS_PERMISSION_REQ:
+                if(grantResults.length>0 &&(grantResults[0]==PackageManager.PERMISSION_GRANTED))
+                {
+                    codPayment.setEnabled(true);
+                }
+                break;
+        }
     }
 
     @Override
@@ -99,23 +115,8 @@ public class PlaceOrder extends AppCompatActivity implements View.OnClickListene
             connected = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
                     connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED;
 
-//            Log.e("Value: ", addrDetails + "\n" + itemDetails + " ");
-
             if (!connected) {
-                builder.setMessage("Please check your network").setTitle("Please check your network");
-
-                builder.setMessage("Please Switch On your your internet/wifi")
-                        .setCancelable(false)
-                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-
-                AlertDialog alert = builder.create();
-
-                alert.setTitle("Please check your network");
-                alert.show();
+                Config.BuildAlert.buildAlert(PlaceOrder.this, "Please Switch On your your internet/wifi", "Please check your network");
             } else {
                 addItemToSheet();
             }
@@ -208,7 +209,16 @@ public class PlaceOrder extends AppCompatActivity implements View.OnClickListene
                 addItemToSheet();
                 Toast.makeText(getApplicationContext(), "Transaction successful.", Toast.LENGTH_SHORT).show();
                 Log.e("UPI", "payment successful: " + approvalRefNo);
-                orderDB.create(addrDetails+"\n"+itemDetails);
+                orderDB.create(addrDetails + "\n" + itemDetails);
+                if(checkPermission(android.Manifest.permission.SEND_SMS))
+                {
+                    SmsManager smsManager=SmsManager.getDefault();
+                    smsManager.sendTextMessage(Config.AppNumber,null,addrDetails + "\n" + itemDetails,null,null);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Permission Denied", Toast.LENGTH_SHORT).show();
+                }
+
                 db.deleteAll();
             } else if ("Payment cancelled by user.".equals(paymentCancel)) {
                 Toast.makeText(getApplicationContext(), "Payment cancelled by user.", Toast.LENGTH_SHORT).show();
@@ -245,9 +255,16 @@ public class PlaceOrder extends AppCompatActivity implements View.OnClickListene
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
                         loading.dismiss();
-                        orderDB.create(addrDetails+"\n"+itemDetails);
+                        orderDB.create(addrDetails + "\n" + itemDetails);
+                        if(checkPermission(android.Manifest.permission.SEND_SMS))
+                        {
+                            SmsManager smsManager=SmsManager.getDefault();
+                            smsManager.sendTextMessage(Config.AppNumber,null,addrDetails + "\n" + itemDetails,null,null);
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(), "Permission Denied", Toast.LENGTH_SHORT).show();
+                        }
                         db.deleteAll();
                         Toast.makeText(getApplicationContext(), "Order Placed " + response, Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
