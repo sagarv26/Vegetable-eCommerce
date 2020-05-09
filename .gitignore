@@ -1,4 +1,7 @@
 *.iml
+google-services.json
+/Users/sagar/AndroidStudioProjects/BuyVegitables/app/src/main/java/sweinc/com/buyvegitables/Config.java
+/Users/sagar/AndroidStudioProjects/BuyVegitables/app/src/main/res/values/strings.xml
 .gradle
 /local.properties
 /.idea/caches/build_file_checksums.ser

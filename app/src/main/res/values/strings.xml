@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Sri Devi Caterings</string>
+    <string name="title_activity_home">Sri Devi Caterings</string>
+    <string name="appEmail">srideviff@gmail.com</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Profile</string>
+    <string name="search">Search</string>
+    <string name="dietary_and_lifestyle">Dietary and Lifestyle</string>
+    <string name="add_cart">Add to Cart</string>
+
+    <string name="swipe_to_remove">Swipe Left to remove from Cart</string>
+    <string name="place_order">Place Order</string>
+
+
+    <string name="app_slogan">Enjoy the Best Product</string>
+    <string name="app_slogan2">Only the\ngood stuff.</string>
+    <string name="app_slogan3">Quality is our Main Priority.</string>
+    <string name="app_slogan4">Expect the \nbest</string>
+    <string name="wishlist">Wishlist</string>
+
+    <string name="app_slogan5">A Healthy Outside\nStarts from Inside</string>
+    <string name="app_slogan6">Eat Better not Less</string>
+    <string name="app_slogan7">You are what you eat,\nso don’t be fast,\ncheap, easy, or fake</string>
+    <string name="test">Test</string>
+
+
+
+
+    <string name="vegetablesTag">Vegetables and Fruits</string>
+
+
+
+</resources>
